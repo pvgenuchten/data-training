@@ -27,4 +27,15 @@ jobs:
             ogrinfo --version
             pip install GDAL==3.4.3
             pip install geodatacrawler
-            crawl-metadata --help
+            pip install pycsw
+            pycsw-admin.py
+            export pgdc_webdav_url=http://localhost/collections/metadata:main/items
+            export pgdc_canonical_url=https://github.com/pvgenuchten/data-training/tree/main/datasets/
+            pwd
+            ls
+            crawl-metadata --dir=./datasets --mode=export --dir-out=/tmp
+            pycsw-admin.py delete-records --config=./pycsw.cfg -y
+            pycsw-admin.py load-records --config=./pycsw.cfg  --path=/tmp
+            pycsw-admin.py load-records --config=./pycsw.cfg  --path=./datasets -r
+
+
