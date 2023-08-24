@@ -36,8 +36,8 @@ jobs:
         - name: publish records
           run: |
             pycsw-admin.py --help
-            pycsw-admin.py delete-records -c=./pycsw.cfg -y
-            pycsw-admin.py load-records -c=./pycsw.cfg  -p=/tmp
+            pycsw-admin.py -c=delete-records -f=./pycsw.cfg -y
+            pycsw-admin.py -c=load-records -f=./pycsw.cfg -p=/tmp
 
 
 
