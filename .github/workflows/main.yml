@@ -1,0 +1,29 @@
+name: Records Deploy
+
+on: 
+  push:
+    paths:
+      - '**'
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  build:
+    name: Build and Deploy Records
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v3
+        - name: Set up Python 3.9
+          uses: actions/setup-python@v4
+          with:
+              python-version: 3.9
+        - uses: s-weigand/setup-conda@v1
+
+        - name: Install requirements 
+          run: |
+                conda install -c conda-forge gdal==3.3.2
+                conda install -c conda-forge pysqlite3==0.4.6
+                pip install geodatacrawler
+                crawl-metadata --help
