@@ -21,8 +21,12 @@ jobs:
               python-version: 3.9
         - uses: s-weigand/setup-conda@v1
 
-        - name: Install requirements 
+        - name: Install requirements 📦
           run: |
+                conda create --name pgdc python=3.9 
+                conda activate pgdc
+                conda install -n base conda-libmamba-solver
+                conda config --set solver libmamba
                 conda install -c conda-forge gdal==3.3.2
                 conda install -c conda-forge pysqlite3==0.4.6
                 pip install geodatacrawler
