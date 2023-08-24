@@ -34,9 +34,10 @@ jobs:
             export pgdc_canonical_url=https://github.com/pvgenuchten/data-training/tree/main/datasets/
             crawl-metadata --dir=./datasets --mode=export --dir-out=/tmp
         - name: publish records
-          run: |   
-            pycsw-admin.py delete-records --config=./pycsw.cfg -y
-            pycsw-admin.py load-records --config=./pycsw.cfg  --path=/tmp
+          run: |
+            pycsw-admin.py --help
+            pycsw-admin.py delete-records -c=./pycsw.cfg -y
+            pycsw-admin.py load-records -c=./pycsw.cfg  -p=/tmp
 
 
 
