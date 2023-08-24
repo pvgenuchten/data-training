@@ -5,6 +5,9 @@ metadata:
   dataseturi: https://data.isric.org/geonetwork/srv/metadata/2b643ef9-4bee-44d4-b50d-5020c9133b8b/formatters/xml
   hierarchylevel: dataset
   datestamp: '2022-06-28T12:55:07'
+spatial:
+    datatype: vector
+    geomtype: point
 identification:
   keywords:
     lsc:
