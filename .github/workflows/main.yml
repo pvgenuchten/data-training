@@ -23,8 +23,6 @@ jobs:
 
         - name: Install requirements 📦
           run: |
-                conda create --name pgdc python=3.9 
-                conda activate pgdc
                 conda install -n base conda-libmamba-solver
                 conda config --set solver libmamba
                 conda install -c conda-forge gdal==3.3.2
