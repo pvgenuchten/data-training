@@ -26,16 +26,17 @@ jobs:
             sudo apt-get install libgdal-dev
             ogrinfo --version
             pip install GDAL==3.4.3
-            pip install geodatacrawler
-            pip install pycsw
-            pycsw-admin.py
+            pip install geodatacrawler pycsw sqlalchemy
             export pgdc_webdav_url=http://localhost/collections/metadata:main/items
             export pgdc_canonical_url=https://github.com/pvgenuchten/data-training/tree/main/datasets/
             pwd
             ls
-            crawl-metadata --dir=./datasets --mode=export --dir-out=/tmp
+            ECHO "delete records"
             pycsw-admin.py delete-records --config=./pycsw.cfg -y
+            ECHO "crawl records"
+            crawl-metadata --dir=./datasets --mode=export --dir-out=/tmp
+            ECHO "load records"
             pycsw-admin.py load-records --config=./pycsw.cfg  --path=/tmp
-            pycsw-admin.py load-records --config=./pycsw.cfg  --path=./datasets -r
+
 
 
