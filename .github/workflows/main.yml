@@ -19,14 +19,12 @@ jobs:
           uses: actions/setup-python@v4
           with:
               python-version: 3.9
-        - uses: s-weigand/setup-conda@v1
-          with:
-            activate-conda: false
         - run: |
-            conda create --name pgdc python=3.9 
-            conda init bash
-            conda activate pgdc
-            conda install -c conda-forge gdal==3.3.2
-            conda install -c conda-forge pysqlite3==0.4.6
+            add-apt-repository ppa:ubuntugis/ppa
+            apt-get update
+            apt-get install gdal-bin
+            apt-get install libgdal-dev
+            ogrinfo --version
+            pip install GDAL==3.4.3
             pip install geodatacrawler
             crawl-metadata --help
