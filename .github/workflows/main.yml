@@ -25,7 +25,7 @@ jobs:
           run: |
                 conda install -n base conda-libmamba-solver
                 conda config --set solver libmamba
-                conda install -c conda-forge gdal==3.3.2
-                conda install -c conda-forge pysqlite3==0.4.6
+                conda install -c conda-forge gdal
+                conda install -c conda-forge pysqlite3
                 pip install geodatacrawler
                 crawl-metadata --help
