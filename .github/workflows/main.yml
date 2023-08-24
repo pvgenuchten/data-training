@@ -19,7 +19,8 @@ jobs:
           uses: actions/setup-python@v4
           with:
               python-version: 3.9
-        - run: |
+        - name: install dependencies
+          run: |
             sudo add-apt-repository ppa:ubuntugis/ppa
             sudo apt-get update
             sudo apt-get install gdal-bin
@@ -27,15 +28,14 @@ jobs:
             ogrinfo --version
             pip install GDAL==3.4.3
             pip install geodatacrawler pycsw sqlalchemy
+        - name: configure run
+          run: |
             export pgdc_webdav_url=http://localhost/collections/metadata:main/items
             export pgdc_canonical_url=https://github.com/pvgenuchten/data-training/tree/main/datasets/
-            pwd
-            ls
-            ECHO "delete records"
-            pycsw-admin.py delete-records --config=./pycsw.cfg -y
-            ECHO "crawl records"
             crawl-metadata --dir=./datasets --mode=export --dir-out=/tmp
-            ECHO "load records"
+        - name: publish records
+          run: |   
+            pycsw-admin.py delete-records --config=./pycsw.cfg -y
             pycsw-admin.py load-records --config=./pycsw.cfg  --path=/tmp
 
 
