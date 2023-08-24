@@ -20,7 +20,12 @@ jobs:
           with:
               python-version: 3.9
         - uses: s-weigand/setup-conda@v1
-
+          with:
+            activate-conda: false
+        - run: conda --version
+        - run: which python
+        - run: conda create --name pgdc python=3.9 
+        - run: conda activate pgdc
         - name: Install requirements 📦
           run: |
                 conda install -c conda-forge gdal==3.3.2
